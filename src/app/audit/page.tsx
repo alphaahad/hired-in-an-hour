@@ -21,7 +21,7 @@ export default function Audit() {
   const reversed = actions?.filter((a) => a.reversed_by).length ?? 0;
 
   return (
-    <div className="mx-auto max-w-4xl px-5 py-6">
+    <div className="animate-enter mx-auto max-w-4xl px-5 py-6">
       <PageHeader eyebrow="Trust layer" title="Audit trail">
         Every connection, mapping decision, sync, extraction, match, approval and reversal in this workspace, with its evidence and before/after state. Reversals are compensating entries: the original stays, struck through.
       </PageHeader>

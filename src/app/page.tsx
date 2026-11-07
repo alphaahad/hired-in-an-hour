@@ -11,7 +11,7 @@ const STEPS = [
   { icon: ShieldCheck, title: "Supervise the AP employee", body: "It reads invoices, runs a 3-way match, cites every exception and waits for your approval." },
 ];
 
-const PRIMARY_LINK = "inline-flex h-9 items-center justify-center gap-1.5 rounded-md bg-accent px-3.5 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+const PRIMARY_LINK = "pressable inline-flex h-9 items-center justify-center gap-1.5 rounded-md bg-accent px-3.5 text-sm font-medium text-white hover:bg-blue-800";
 
 export default function Start() {
   const { state } = useChecklist();

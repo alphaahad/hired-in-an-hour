@@ -12,7 +12,8 @@ export const STATUS: Record<string, { tone: Tone; label: string }> = {
 
 export function StatusBadge({ status }: { status: string }) {
   const s = STATUS[status] ?? { tone: "neutral" as Tone, label: status };
-  return <Badge tone={s.tone}>{s.label}</Badge>;
+  // Keyed by status: when an invoice changes state the chip cross-fades instead of snapping.
+  return <Badge key={status} tone={s.tone} className="animate-swap">{s.label}</Badge>;
 }
 
 export const EXCEPTION_LABEL: Record<string, string> = {

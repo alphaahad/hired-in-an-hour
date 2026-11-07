@@ -11,7 +11,7 @@ export const Button = forwardRef<HTMLButtonElement, BtnProps>(function Button({ 
       ref={ref}
       disabled={disabled || loading}
       className={cx(
-        "inline-flex items-center justify-center gap-1.5 rounded-md font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+        "pressable inline-flex items-center justify-center gap-1.5 rounded-md font-medium select-none disabled:opacity-50 disabled:cursor-not-allowed",
         size === "sm" ? "h-7 px-2.5 text-xs" : "h-9 px-3.5 text-sm",
         variant === "primary" && "bg-accent text-white hover:bg-blue-800",
         variant === "secondary" && "bg-surface text-ink border border-line-2 hover:bg-gray-50",
@@ -28,7 +28,7 @@ export const Button = forwardRef<HTMLButtonElement, BtnProps>(function Button({ 
 });
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cx("rounded-lg border border-line bg-surface", className)}>{children}</div>;
+  return <div className={cx("rounded-lg border border-line bg-surface transition-[border-color,box-shadow] duration-300", className)}>{children}</div>;
 }
 
 const TONES = {
@@ -46,7 +46,7 @@ export function Badge({ tone = "neutral", children, className }: { tone?: Tone; 
 
 export function MockBadge() {
   return (
-    <span title="Every vendor, invoice, PO and NetSuite record in this app is synthetic." className="rounded border border-red-200 bg-bad-soft px-1.5 py-0.5 text-[10px] font-semibold tracking-wide text-bad uppercase">
+    <span title="Every vendor, invoice, PO and NetSuite record in this app is synthetic." className="rounded border border-red-200 bg-bad-soft px-1.5 py-0.5 text-[10px] font-semibold tracking-wide whitespace-nowrap text-bad uppercase">
       Mock data
     </span>
   );
@@ -74,7 +74,7 @@ export function PageHeader({ eyebrow, title, children, actions }: { eyebrow?: st
 }
 
 export function ErrorNote({ children }: { children: ReactNode }) {
-  return <div className="rounded-md border border-red-200 bg-bad-soft px-3 py-2 text-sm text-bad">{children}</div>;
+  return <div role="alert" className="animate-enter rounded-md border border-red-200 bg-bad-soft px-3 py-2 text-sm text-bad">{children}</div>;
 }
 
 export async function api<T = unknown>(path: string, init?: RequestInit & { json?: unknown }): Promise<T> {

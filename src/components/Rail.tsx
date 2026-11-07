@@ -9,6 +9,11 @@ import { duration } from "@/lib/format";
 
 const TARGET_MS = 60 * 60 * 1000;
 
+/** A completed step's tick. It settles in only if this rail saw the step unfinished, i.e. you just completed it. */
+function Tick({ fresh }: { fresh: boolean }) {
+  return <Check className={cx("size-3", fresh && "animate-settle")} strokeWidth={3} />;
+}
+
 /** The metric, always visible: time from "Start setup" to the first approved bill. */
 export function Rail() {
   const { state } = useChecklist();
@@ -27,6 +32,11 @@ export function Rail() {
   const pctOfTarget = Math.min(1, elapsed / TARGET_MS);
   const nextIdx = state?.steps.findIndex((s) => !s.done) ?? 0;
 
+  // Remember steps seen unfinished (React's "adjust state during render" pattern; no effect, no ref).
+  const [seenPending, setSeenPending] = useState<ReadonlySet<string>>(() => new Set());
+  const pending = state?.steps.filter((s) => !s.done).map((s) => s.key) ?? [];
+  if (pending.some((k) => !seenPending.has(k))) setSeenPending(new Set([...seenPending, ...pending]));
+
   return (
     <aside className="w-72 shrink-0">
       <div className="sticky top-16 space-y-3">
@@ -38,7 +48,7 @@ export function Rail() {
             {started ? duration(elapsed) : "0s"}
           </div>
           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-gray-100">
-            <div className={cx("h-full rounded-full transition-all", finished ? "bg-ok" : pctOfTarget > 0.8 ? "bg-warn" : "bg-accent")} style={{ width: `${Math.max(2, pctOfTarget * 100)}%` }} />
+            <div className={cx("h-full rounded-full transition-[width,background-color] duration-700 ease-(--ease-spring)", finished ? "bg-ok" : pctOfTarget > 0.8 ? "bg-warn" : "bg-accent")} style={{ width: `${Math.max(2, pctOfTarget * 100)}%` }} />
           </div>
           <div className="mt-1.5 flex justify-between text-[11px] text-muted">
             <span>{finished ? "Done. Timer stopped" : started ? "Running" : "Starts when you begin setup"}</span>
@@ -53,10 +63,10 @@ export function Rail() {
               const active = path === s.href || (s.href === "/employee" && path.startsWith("/employee") && i === nextIdx);
               return (
                 <li key={s.key}>
-                  <Link href={s.href} className={cx("flex gap-2.5 rounded-md px-2 py-2", active ? "bg-accent-soft" : "hover:bg-gray-50")}>
-                    <span className={cx("mt-0.5 grid size-5 shrink-0 place-items-center rounded-full border text-[10px] font-semibold",
+                  <Link href={s.href} className={cx("pressable flex gap-2.5 rounded-md px-2 py-2", active ? "bg-accent-soft" : "hover:bg-gray-50")}>
+                    <span className={cx("mt-0.5 grid size-5 shrink-0 place-items-center rounded-full border text-[10px] font-semibold transition-colors duration-300",
                       s.done ? "border-ok bg-ok text-white" : i === nextIdx ? "border-accent text-accent" : "border-line-2 text-muted")}>
-                      {s.done ? <Check className="size-3" strokeWidth={3} /> : i + 1}
+                      {s.done ? <Tick fresh={seenPending.has(s.key)} /> : i + 1}
                     </span>
                     <span className="min-w-0">
                       <span className={cx("block text-sm", s.done ? "text-ink-2" : i === nextIdx ? "font-medium text-ink" : "text-ink-2")}>{s.label}</span>

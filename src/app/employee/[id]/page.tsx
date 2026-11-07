@@ -98,7 +98,7 @@ function InvoiceDetail({ id }: { id: string }) {
       </div>
 
       {celebrate && (
-        <Card className="mb-4 flex items-center gap-3 border-emerald-200 bg-ok-soft p-4">
+        <Card className="animate-enter mb-4 flex items-center gap-3 border-emerald-200 bg-ok-soft p-4">
           <PartyPopper className="size-5 text-ok" />
           <div className="text-sm"><strong>Your AP employee is working.</strong> First bill posted with a human-approved 3-way match. The timer has stopped. <Link href="/metrics" className="text-accent underline">See the metric</Link></div>
         </Card>

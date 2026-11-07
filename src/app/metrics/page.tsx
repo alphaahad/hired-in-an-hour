@@ -25,7 +25,7 @@ export default function Metrics() {
   const worst = f.steps.slice(1).filter((s) => s.conversionFromPrev !== null).sort((a, b) => a.conversionFromPrev! - b.conversionFromPrev!)[0];
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-6">
+    <div className="animate-enter mx-auto max-w-5xl px-5 py-6">
       <PageHeader
         eyebrow="Measurement"
         title="Time to first working employee"
@@ -70,7 +70,7 @@ export default function Metrics() {
             <div key={s.name} className="grid grid-cols-[220px_1fr_150px_130px] items-center gap-3 text-sm">
               <div className="text-ink-2">{s.label}</div>
               <div className="h-6 overflow-hidden rounded bg-gray-100">
-                {s.count > 0 && <div className={cx("flex h-full items-center rounded px-2 font-mono text-[11px] text-white", i === f.steps.length - 1 ? "bg-ok" : "bg-accent")} style={{ width: `${Math.max(4, (s.count / top) * 100)}%` }}>{s.count}</div>}
+                {s.count > 0 && <div className={cx("animate-reveal flex h-full items-center rounded px-2 font-mono text-[11px] text-white", i === f.steps.length - 1 ? "bg-ok" : "bg-accent")} style={{ width: `${Math.max(4, (s.count / top) * 100)}%`, animationDelay: `${i * 70}ms` }}>{s.count}</div>}
               </div>
               <div className="text-xs text-muted">{i === 0 ? "—" : s.conversionFromPrev === null ? "—" : `${Math.round(s.conversionFromPrev * 100)}% from previous`}</div>
               <div className="text-right font-mono text-xs text-muted">{s.medianStepMs !== null ? `+${duration(s.medianStepMs)} median` : ""}</div>
