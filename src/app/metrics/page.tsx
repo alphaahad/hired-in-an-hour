@@ -41,21 +41,21 @@ export default function Metrics() {
       <div className="grid gap-3 sm:grid-cols-4">
         <Card className="p-4">
           <div className="text-xs text-muted">Your run</div>
-          <div className={cx("mt-1 font-mono text-2xl font-semibold", mine !== null && "text-ok")}>{mine !== null ? duration(mine) : d.me.setupStartedAt ? "in progress" : "not started"}</div>
+          <div className={cx("mt-1 text-2xl font-semibold", mine !== null && "text-ok")}>{mine !== null ? duration(mine) : d.me.setupStartedAt ? "in progress" : "not started"}</div>
         </Card>
         <Card className="p-4">
           <div className="text-xs text-muted">Median, all sessions</div>
-          <div className="mt-1 font-mono text-2xl font-semibold">{f.timeToFirstEmployee.median !== null ? duration(f.timeToFirstEmployee.median) : "—"}</div>
+          <div className="mt-1 text-2xl font-semibold">{f.timeToFirstEmployee.median !== null ? duration(f.timeToFirstEmployee.median) : "—"}</div>
           <div className="text-[11px] text-muted">n = {f.timeToFirstEmployee.n} completed</div>
         </Card>
         <Card className="p-4">
           <div className="text-xs text-muted">p90</div>
-          <div className="mt-1 font-mono text-2xl font-semibold">{f.timeToFirstEmployee.p90 !== null ? duration(f.timeToFirstEmployee.p90) : "—"}</div>
+          <div className="mt-1 text-2xl font-semibold">{f.timeToFirstEmployee.p90 !== null ? duration(f.timeToFirstEmployee.p90) : "—"}</div>
           <div className="text-[11px] text-muted">the number I&apos;d actually manage to</div>
         </Card>
         <Card className="p-4">
           <div className="text-xs text-muted">Completed under 1 hour</div>
-          <div className="mt-1 font-mono text-2xl font-semibold">{f.timeToFirstEmployee.n ? `${Math.round((f.timeToFirstEmployee.underHour / f.timeToFirstEmployee.n) * 100)}%` : "—"}</div>
+          <div className="mt-1 text-2xl font-semibold">{f.timeToFirstEmployee.n ? `${Math.round((f.timeToFirstEmployee.underHour / f.timeToFirstEmployee.n) * 100)}%` : "—"}</div>
           <div className="text-[11px] text-muted">of {f.sessions} started sessions, {f.timeToFirstEmployee.n} finished</div>
         </Card>
       </div>
@@ -70,10 +70,10 @@ export default function Metrics() {
             <div key={s.name} className="grid grid-cols-[220px_1fr_150px_130px] items-center gap-3 text-sm">
               <div className="text-ink-2">{s.label}</div>
               <div className="h-6 overflow-hidden rounded bg-gray-100">
-                {s.count > 0 && <div className={cx("animate-reveal flex h-full items-center rounded px-2 font-mono text-[11px] text-white", i === f.steps.length - 1 ? "bg-ok" : "bg-accent")} style={{ width: `${Math.max(4, (s.count / top) * 100)}%`, animationDelay: `${i * 70}ms` }}>{s.count}</div>}
+                {s.count > 0 && <div className={cx("animate-reveal flex h-full items-center rounded px-2 text-[11px] text-white", i === f.steps.length - 1 ? "bg-ok" : "bg-accent")} style={{ width: `${Math.max(4, (s.count / top) * 100)}%`, animationDelay: `${i * 70}ms` }}>{s.count}</div>}
               </div>
               <div className="text-xs text-muted">{i === 0 ? "—" : s.conversionFromPrev === null ? "—" : `${Math.round(s.conversionFromPrev * 100)}% from previous`}</div>
-              <div className="text-right font-mono text-xs text-muted">{s.medianStepMs !== null ? `+${duration(s.medianStepMs)} median` : ""}</div>
+              <div className="text-right text-xs text-muted">{s.medianStepMs !== null ? `+${duration(s.medianStepMs)} median` : ""}</div>
             </div>
           ))}
         </div>
@@ -84,7 +84,7 @@ export default function Metrics() {
         <Card className="p-4">
           <div className="text-sm font-medium">Trust signals</div>
           <ul className="mt-2 space-y-1 text-sm">
-            {d.other.length ? d.other.map((o) => <li key={o.name} className="flex justify-between"><span className="text-ink-2">{OTHER_LABEL[o.name] ?? o.name}</span><span className="font-mono">{o.n}</span></li>) : <li className="text-muted">None yet</li>}
+            {d.other.length ? d.other.map((o) => <li key={o.name} className="flex justify-between"><span className="text-ink-2">{OTHER_LABEL[o.name] ?? o.name}</span><span className="tabular-nums">{o.n}</span></li>) : <li className="text-muted">None yet</li>}
           </ul>
           <p className="mt-2 text-xs text-muted">Undo and reversal usage is a leading indicator: high reversal rates mean people don&apos;t trust what the employee did.</p>
         </Card>

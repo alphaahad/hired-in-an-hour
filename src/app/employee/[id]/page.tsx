@@ -30,12 +30,12 @@ function Citations({ c }: { c: CheckResult }) {
           {c.citations.map((ci, i) => (
             <tr key={i} className="border-t border-line first:border-t-0">
               <td className="bg-gray-50 px-2 py-1.5 text-muted">{ci.doc}<div className="text-ink-2">{ci.field}</div></td>
-              <td className="px-2 py-1.5 font-mono font-medium text-bad">{ci.value}</td>
+              <td className="px-2 py-1.5 font-medium text-bad">{ci.value}</td>
               {ci.against ? (
                 <>
                   <td className="px-1 text-muted">vs</td>
                   <td className="bg-gray-50 px-2 py-1.5 text-muted">{ci.against.doc}<div className="text-ink-2">{ci.against.field}</div></td>
-                  <td className="px-2 py-1.5 font-mono font-medium text-ink">{ci.against.value}</td>
+                  <td className="px-2 py-1.5 font-medium text-ink">{ci.against.value}</td>
                 </>
               ) : <td colSpan={3} />}
             </tr>
@@ -92,7 +92,7 @@ function InvoiceDetail({ id }: { id: string }) {
         <Link href="/employee" className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink"><ArrowLeft className="size-4" /> Inbox</Link>
         <div className="ml-auto flex items-center gap-1">
           {d.prev && <Link href={`/employee/${d.prev}`} className="rounded-md p-1.5 text-muted hover:bg-gray-100"><ChevronLeft className="size-4" /></Link>}
-          <span className="font-mono text-xs text-muted">{d.id}</span>
+          <span className="text-xs text-muted">{d.id}</span>
           {d.next && <Link href={`/employee/${d.next}`} className="rounded-md p-1.5 text-muted hover:bg-gray-100"><ChevronRight className="size-4" /></Link>}
         </div>
       </div>
@@ -107,7 +107,7 @@ function InvoiceDetail({ id }: { id: string }) {
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
         <Card className="overflow-hidden">
           <div className="flex items-center justify-between border-b border-line px-4 py-2 text-xs text-muted">
-            <span className="font-mono">{d.file.split("/").pop()}</span><span>Source document · mock</span>
+            <span className="tabular-nums">{d.file.split("/").pop()}</span><span>Source document · mock</span>
           </div>
           <iframe src={`${d.file}#toolbar=0&navpanes=0&view=FitH`} className="h-[780px] w-full bg-gray-100" title="Invoice PDF" />
         </Card>
@@ -117,7 +117,7 @@ function InvoiceDetail({ id }: { id: string }) {
             <div className="flex flex-wrap items-start gap-3">
               <div>
                 <div className="text-xs text-muted">{d.vendor}</div>
-                <div className="font-mono text-lg font-semibold">{ex?.invoice_number ?? "Not read yet"}</div>
+                <div className="text-lg font-semibold">{ex?.invoice_number ?? "Not read yet"}</div>
                 {ex && <div className="text-sm text-ink-2">{inr(ex.total)} · {shortDate(ex.invoice_date)} · {ex.po_number}</div>}
               </div>
               <div className="ml-auto flex flex-col items-end gap-1.5">
@@ -159,7 +159,7 @@ function InvoiceDetail({ id }: { id: string }) {
                 <thead className="text-left text-muted">
                   <tr><th className="py-1 font-medium">Line</th><th className="font-medium">Item</th><th className="text-right font-medium">Invoice qty</th><th className="text-right font-medium">Received</th><th className="text-right font-medium">PO qty</th><th className="text-right font-medium">Invoice price</th><th className="text-right font-medium">PO price</th></tr>
                 </thead>
-                <tbody className="font-mono">
+                <tbody className="tabular-nums">
                   {m.lineTable.map((l) => {
                     const priceBad = l.po && l.invoice.price > l.po.price * 1.02 + 1e-9;
                     const priceWarn = l.po && !priceBad && l.invoice.price !== l.po.price;
@@ -200,7 +200,7 @@ function InvoiceDetail({ id }: { id: string }) {
                 {(["vendor_name", "vendor_tax_id", "invoice_number", "invoice_date", "po_number", "total"] as const).map((k) => (
                   <div key={k} className="contents">
                     <dt className="text-muted">{k.replace(/_/g, " ")}</dt>
-                    <dd><span className="font-mono">{k === "total" ? inr(ex.total) : String(ex[k])}</span>{ex.evidence?.[k] && <span className="ml-2 text-muted">“{ex.evidence[k]}”</span>}</dd>
+                    <dd><span className="tabular-nums">{k === "total" ? inr(ex.total) : String(ex[k])}</span>{ex.evidence?.[k] && <span className="ml-2 text-muted">“{ex.evidence[k]}”</span>}</dd>
                   </div>
                 ))}
               </dl>

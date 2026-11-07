@@ -18,7 +18,7 @@ function Confidence({ v }: { v: number }) {
   return (
     <span className="inline-flex items-center gap-1.5" title="Confidence">
       <span className="h-1.5 w-12 overflow-hidden rounded-full bg-gray-100"><span className={cx("block h-full", tone)} style={{ width: `${v * 100}%` }} /></span>
-      <span className="font-mono text-xs text-ink-2">{Math.round(v * 100)}%</span>
+      <span className="text-xs text-ink-2">{Math.round(v * 100)}%</span>
     </span>
   );
 }

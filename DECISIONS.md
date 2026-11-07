@@ -131,6 +131,7 @@ A seeded +1.2% invoice demonstrates the warning-but-pass path.
 | Choice | Why | Instead of |
 |---|---|---|
 | Next.js 16 + TypeScript + Tailwind | One deployable unit (UI and mock ERP API), Vercel-native | Separate API server |
+| IBM Plex Sans (+ Plex Mono for field names, JSON and logs only) | Sturdy, renders well on Windows, reads as enterprise finance; amounts use tabular figures instead of monospace | Geist (thin on Windows), Inter |
 | Postgres: Neon in prod, PGlite locally | SQLite doesn't persist on serverless; PGlite gives zero-setup `npm run dev` | SQLite / JSON files |
 | Plain SQL, no ORM | ~10 tables; every query readable in review | Drizzle (planned, dropped as unnecessary) |
 | Hand-rolled UI primitives | Five components; a quiet finance look doesn't need a library | shadcn/ui |

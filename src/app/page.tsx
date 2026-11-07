@@ -29,7 +29,7 @@ export default function Start() {
         </p>
         <div className="mt-5 inline-flex items-baseline gap-3 rounded-lg border border-line bg-surface px-4 py-3">
           <span className="text-sm text-muted">Time to first working employee</span>
-          <span className="font-mono text-lg font-semibold">target &lt; 60 min</span>
+          <span className="text-lg font-semibold">target &lt; 60 min</span>
         </div>
         <p className="mt-2 text-xs text-muted">Measured from “Start setup” to the first vendor bill the employee posts and a human approves.</p>
         <div className="mt-7 flex items-center gap-3">

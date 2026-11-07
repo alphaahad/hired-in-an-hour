@@ -83,7 +83,7 @@ export default function SyncPage() {
         <Card className="mb-4 p-5">
           <div className="flex flex-wrap items-center gap-3">
             <Badge tone={run.status === "partial" ? "warn" : "ok"}>{run.status === "partial" ? "Partial success" : "Succeeded"}</Badge>
-            <span className="text-sm"><strong className="font-mono">{run.summary.ok}</strong> of {run.summary.total} records synced · <strong className="font-mono">{run.summary.failed}</strong> quarantined</span>
+            <span className="text-sm"><strong className="tabular-nums">{run.summary.ok}</strong> of {run.summary.total} records synced · <strong className="tabular-nums">{run.summary.failed}</strong> quarantined</span>
             <span className="font-mono text-xs text-muted">{run.id}</span>
             <div className="ml-auto flex gap-2">
               <Button size="sm" onClick={start}><Play className="size-3.5" /> Re-run</Button>
@@ -94,7 +94,7 @@ export default function SyncPage() {
             {Object.entries(run.summary.byType).map(([t, s]) => (
               <div key={t} className="rounded-md border border-line px-3 py-2">
                 <div className="text-xs text-muted">{TYPE_LABEL[t]}</div>
-                <div className="mt-0.5 font-mono text-sm"><span className="text-ok">{s.ok} ok</span>{s.failed > 0 && <span className="text-warn"> · {s.failed} quarantined</span>}</div>
+                <div className="mt-0.5 text-sm"><span className="text-ok">{s.ok} ok</span>{s.failed > 0 && <span className="text-warn"> · {s.failed} quarantined</span>}</div>
               </div>
             ))}
           </div>
@@ -102,7 +102,7 @@ export default function SyncPage() {
             <div className="mt-4 rounded-md border border-amber-200 bg-warn-soft p-3">
               <div className="flex items-center gap-1.5 text-sm font-medium text-warn"><AlertTriangle className="size-4" /> Quarantined records</div>
               <ul className="mt-2 space-y-1 text-sm text-ink-2">
-                {run.summary.failures.map((f) => <li key={f.type + f.id}><span className="font-mono text-xs">{f.type} {f.id}</span>: {f.error}</li>)}
+                {run.summary.failures.map((f) => <li key={f.type + f.id}><span className="text-xs">{f.type} {f.id}</span>: {f.error}</li>)}
               </ul>
               <p className="mt-2 text-xs text-muted">These are fixed in NetSuite, not here. They are historical bills, so the employee can still start; duplicate checks just won&apos;t see these two.</p>
             </div>

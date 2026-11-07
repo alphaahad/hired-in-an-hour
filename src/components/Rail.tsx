@@ -44,7 +44,7 @@ export function Rail() {
           <div className="flex items-center gap-1.5 text-xs font-medium text-muted">
             <Timer className="size-3.5" /> Time to first working employee
           </div>
-          <div className={cx("mt-1.5 font-mono text-3xl font-semibold tracking-tight", finished ? "text-ok" : "text-ink")}>
+          <div className={cx("mt-1.5 text-3xl font-semibold tracking-tight", finished ? "text-ok" : "text-ink")}>
             {started ? duration(elapsed) : "0s"}
           </div>
           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-gray-100">

@@ -86,7 +86,7 @@ export default function Inbox() {
         ].map(([k, n, c]) => (
           <Card key={k as string} className="px-4 py-3">
             <div className="text-xs text-muted">{k}</div>
-            <div className={cx("font-mono text-2xl font-semibold", c as string)}>{n}</div>
+            <div className={cx("text-2xl font-semibold", c as string)}>{n}</div>
           </Card>
         ))}
       </div>
@@ -108,15 +108,15 @@ export default function Inbox() {
           <tbody>
             {rows.map((r) => (
               <tr key={r.id} className="border-t border-line hover:bg-gray-50">
-                <td className="px-4 py-2"><Link href={`/employee/${r.id}`} className="font-mono text-xs text-accent hover:underline">{r.id}.pdf</Link></td>
+                <td className="px-4 py-2"><Link href={`/employee/${r.id}`} className="text-xs text-accent hover:underline">{r.id}.pdf</Link></td>
                 <td className="px-2 py-2 text-ink-2">{r.vendor.replace(" Pvt Ltd", "")}</td>
-                <td className="px-2 py-2 font-mono text-xs">{r.number ?? <span className="text-muted">—</span>}</td>
-                <td className="px-2 py-2 text-right font-mono text-xs">{r.total !== null ? inr(r.total) : "—"}</td>
+                <td className="px-2 py-2 text-xs">{r.number ?? <span className="text-muted">—</span>}</td>
+                <td className="px-2 py-2 text-right text-xs">{r.total !== null ? inr(r.total) : "—"}</td>
                 <td className="px-4 py-2">{busy.has(r.id) ? <StatusBadge status="processing" /> : <StatusBadge status={r.status} />}</td>
                 <td className="w-full max-w-0 px-2 py-2 text-xs text-ink-2">
                   {r.match?.exceptions.length ? (
                     <span className="block truncate" title={r.match.exceptions[0].detail}>{r.match.exceptions[0].detail}</span>
-                  ) : r.status === "posted" ? <span className="font-mono text-muted">{r.bill_id}</span> : r.match ? <span className="block truncate text-muted">{r.match.poId} · {r.match.receiptIds.join(", ")}</span> : null}
+                  ) : r.status === "posted" ? <span className="text-muted">{r.bill_id}</span> : r.match ? <span className="block truncate text-muted">{r.match.poId} · {r.match.receiptIds.join(", ")}</span> : null}
                 </td>
                 <td className="px-4 py-2"><SourceBadge source={r.extraction_source} /></td>
               </tr>
