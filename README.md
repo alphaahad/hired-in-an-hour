@@ -4,7 +4,7 @@
 
 > ⚠️ **All data is synthetic mock data.** The vendors, invoices, POs, receipts and the NetSuite sandbox are generated for this demo. There is no real ERP connection, no customer data and no Zamp data. This is an independent prototype by Ahad Nadeem, not a Zamp product.
 
-**Live demo:** _<add Vercel URL>_ · **Decisions log:** [DECISIONS.md](DECISIONS.md)
+**Live demo:** https://zamp-in-an-hour.vercel.app · **Decisions log:** [DECISIONS.md](DECISIONS.md)
 
 ---
 
