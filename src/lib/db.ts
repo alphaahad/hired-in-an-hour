@@ -112,8 +112,8 @@ async function init(): Promise<Driver> {
     driver = { query: async (text, params = []) => (await sql.query(text, params)) as Row[] };
   } else {
     const { PGlite } = await import("@electric-sql/pglite");
-    const dir = process.env.VERCEL ? "memory://" : "./.data/pglite";
-    if (!process.env.VERCEL) (await import("node:fs")).mkdirSync(dir, { recursive: true });
+    const dir = process.env.PGLITE_DIR ?? (process.env.VERCEL ? "memory://" : "./.data/pglite");
+    if (!dir.startsWith("memory://")) (await import("node:fs")).mkdirSync(dir, { recursive: true });
     const pg = new PGlite(dir);
     driver = { query: async (text, params = []) => (await pg.query<Row>(text, params)).rows };
   }

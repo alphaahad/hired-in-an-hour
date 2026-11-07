@@ -9,7 +9,8 @@
     "lint": "eslint",
     "pdfs": "tsx scripts/generate-pdfs.ts",
     "cache:export": "tsx --env-file-if-exists=.env.local scripts/export-llm-cache.mts",
-    "test": "vitest run"
+    "test": "vitest run",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.15",
@@ -24,6 +25,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.0",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

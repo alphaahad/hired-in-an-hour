@@ -1,8 +1,7 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import Link from "next/link";
 import { ArrowRight, Database, GitCompareArrows, ShieldCheck, Workflow } from "lucide-react";
-import { Button, Card, ErrorNote, api } from "@/components/ui";
+import { Card } from "@/components/ui";
 import { useChecklist } from "@/components/useChecklist";
 
 const STEPS = [
@@ -12,11 +11,10 @@ const STEPS = [
   { icon: ShieldCheck, title: "Supervise the AP employee", body: "It reads invoices, runs a 3-way match, cites every exception and waits for your approval." },
 ];
 
+const PRIMARY_LINK = "inline-flex h-9 items-center justify-center gap-1.5 rounded-md bg-accent px-3.5 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+
 export default function Start() {
-  const router = useRouter();
   const { state } = useChecklist();
-  const [busy, setBusy] = useState(false);
-  const [err, setErr] = useState<string | null>(null);
   const started = !!state?.workspace.setupStartedAt;
   const next = state?.steps.find((s) => !s.done)?.href ?? "/employee";
 
@@ -35,30 +33,13 @@ export default function Start() {
         </div>
         <p className="mt-2 text-xs text-muted">Measured from “Start setup” to the first vendor bill the employee posts and a human approves.</p>
         <div className="mt-7 flex items-center gap-3">
-          {started ? (
-            <Button variant="primary" onClick={() => router.push(next)}>Continue setup <ArrowRight className="size-4" /></Button>
-          ) : (
-            <Button
-              variant="primary"
-              loading={busy}
-              onClick={async () => {
-                setBusy(true);
-                setErr(null);
-                try {
-                  await api("/api/setup/start", { json: {} });
-                  router.push("/setup/connect");
-                } catch (e) {
-                  setErr((e as Error).message);
-                  setBusy(false);
-                }
-              }}
-            >
-              Start setup · timer starts <ArrowRight className="size-4" />
-            </Button>
-          )}
+          {/* Real links, not JS buttons: they work even if clicked before the page finishes loading.
+              The connect page starts the timer when it opens. */}
+          <Link href={started ? next : "/setup/connect"} className={PRIMARY_LINK}>
+            {started ? "Continue setup" : "Start setup · timer starts"} <ArrowRight className="size-4" />
+          </Link>
           <span className="text-xs text-muted">No sign-up. Synthetic data only.</span>
         </div>
-        {err && <div className="mt-4"><ErrorNote>{err}</ErrorNote></div>}
       </div>
 
       <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

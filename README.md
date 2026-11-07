@@ -108,6 +108,8 @@ Other scripts:
 
 ```bash
 npm test        # unit tests: match engine + mapping scorer
+npm run e2e     # browser tests (installed Chrome): happy path + price-mismatch path, on a fresh in-memory DB
+E2E_BASE_URL=https://zamp-in-an-hour.vercel.app npm run e2e   # same tests against the live site
 npm run pdfs    # regenerate the 20 synthetic invoice PDFs from src/data/seed.ts
 npm run cache:export  # snapshot live Gemini answers from the local DB (stop the dev server first)
 ```
