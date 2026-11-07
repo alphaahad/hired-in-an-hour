@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* Quiet, finance-grade palette: one accent, status colours used only for status. */
+@theme inline {
+  --color-canvas: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-ink: #111827;
+  --color-ink-2: #374151;
+  --color-muted: #6b7280;
+  --color-line: #e5e7eb;
+  --color-line-2: #d1d5db;
+  --color-accent: #1d4ed8;
+  --color-accent-soft: #eff4ff;
+  --color-ok: #047857;
+  --color-ok-soft: #ecfdf5;
+  --color-warn: #b45309;
+  --color-warn-soft: #fffbeb;
+  --color-bad: #b91c1c;
+  --color-bad-soft: #fef2f2;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-feature-settings: "tnum" 1; /* tabular numbers: amounts line up */
+}
+
+::selection {
+  background: #dbe6ff;
+}

@@ -1,0 +1,929 @@
+[
+ {
+  "key": "4d7244b46fa32617449d810945798e8c4af17e7f076c4e5d719b1366657f15e1",
+  "value": {
+   "tax": 5832,
+   "lines": [
+    {
+     "amount": 16800,
+     "quantity": 40,
+     "item_code": "HS-GLV",
+     "unit_price": 420,
+     "description": "Nitrile gloves, box of 100"
+    },
+    {
+     "amount": 15600,
+     "quantity": 60,
+     "item_code": "HS-VST",
+     "unit_price": 260,
+     "description": "Hi-vis reflective vest"
+    }
+   ],
+   "total": 38232,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Haldenwerk Safety Supplies Pvt Ltd"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "27AAFCH7310K1Z8"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "HSS-INV-3381"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "4 October 2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2302"
+    },
+    {
+     "field": "total",
+     "quote": "38,232.00"
+    }
+   ],
+   "subtotal": 32400,
+   "po_number": "PO-2302",
+   "vendor_name": "Haldenwerk Safety Supplies Pvt Ltd",
+   "invoice_date": "2026-10-04",
+   "vendor_tax_id": "27AAFCH7310K1Z8",
+   "invoice_number": "HSS-INV-3381"
+  },
+  "created_at": "2026-11-07T13:08:13.429Z"
+ },
+ {
+  "key": "168045dd78e91d7bcea0e4a632741003b92cfbbf5701d9190276b1f38ed8926b",
+  "value": {
+   "tax": 8064,
+   "lines": [
+    {
+     "amount": 37000,
+     "quantity": 2000,
+     "item_code": "KC-BOX-S",
+     "unit_price": 18.5,
+     "description": "Corrugated carton, small (3-ply)"
+    },
+    {
+     "amount": 7800,
+     "quantity": 120,
+     "item_code": "KC-TAPE",
+     "unit_price": 65,
+     "description": "BOPP packing tape, 48mm x 65m"
+    }
+   ],
+   "total": 52864,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "KAVERI CORRUGATES PVT LTD"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "29AAKCK4821M1Z3"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "KC/26-27/0412"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "03/10/2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2301"
+    },
+    {
+     "field": "total",
+     "quote": "52,864.00"
+    }
+   ],
+   "subtotal": 44800,
+   "po_number": "PO-2301",
+   "vendor_name": "KAVERI CORRUGATES PVT LTD",
+   "invoice_date": "2026-10-03",
+   "vendor_tax_id": "29AAKCK4821M1Z3",
+   "invoice_number": "KC/26-27/0412"
+  },
+  "created_at": "2026-11-07T13:08:14.680Z"
+ },
+ {
+  "key": "cdf23413b705e242ff815ca09775cc054522cb3e4415d200bfa76162520b4d45",
+  "value": {
+   "tax": 17697.6,
+   "lines": [
+    {
+     "amount": 91200,
+     "quantity": 8,
+     "item_code": "MD-MON",
+     "unit_price": 11400,
+     "description": "24-inch IPS monitor"
+    },
+    {
+     "amount": 7120,
+     "quantity": 8,
+     "item_code": "MD-KB",
+     "unit_price": 890,
+     "description": "Wired keyboard, full size"
+    }
+   ],
+   "total": 116017.6,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Meridian Desk & IT Pvt Ltd"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "27AAJCM5503D1Z6"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "MDI-0057"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "6 October 2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2304"
+    },
+    {
+     "field": "total",
+     "quote": "1,16,017.60"
+    }
+   ],
+   "subtotal": 98320,
+   "po_number": "PO-2304",
+   "vendor_name": "Meridian Desk & IT Pvt Ltd",
+   "invoice_date": "2026-10-06",
+   "vendor_tax_id": "27AAJCM5503D1Z6",
+   "invoice_number": "MDI-0057"
+  },
+  "created_at": "2026-11-07T13:08:14.753Z"
+ },
+ {
+  "key": "714bdd1bf6d47ea9b241b4fe69ceb60462262bb714adcbd7c6e5fa6e840ffd83",
+  "value": {
+   "tax": 6912,
+   "lines": [
+    {
+     "amount": 22200,
+     "quantity": 12,
+     "item_code": "SE-CBL",
+     "unit_price": 1850,
+     "description": "Copper cable 2.5 sq mm, 25 m coil"
+    },
+    {
+     "amount": 16200,
+     "quantity": 30,
+     "item_code": "SE-MCB",
+     "unit_price": 540,
+     "description": "MCB 32A double pole"
+    }
+   ],
+   "total": 45312,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Sutlej Electricals Pvt Ltd — Ludhiana"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "03AAGCS2294P1Z1"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "SE2026-141"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "2026-10-05"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2303"
+    },
+    {
+     "field": "total",
+     "quote": "45,312.00"
+    }
+   ],
+   "subtotal": 38400,
+   "po_number": "PO-2303",
+   "vendor_name": "Sutlej Electricals Pvt Ltd — Ludhiana",
+   "invoice_date": "2026-10-05",
+   "vendor_tax_id": "03AAGCS2294P1Z1",
+   "invoice_number": "SE2026-141"
+  },
+  "created_at": "2026-11-07T13:08:15.893Z"
+ },
+ {
+  "key": "3c27c6660517bdb7ca1588519b2f17d7269ad2123e4b83a536e34f7357b10154",
+  "value": {
+   "tax": 11052,
+   "lines": [
+    {
+     "amount": 53000,
+     "quantity": 50,
+     "item_code": "HS-HLM",
+     "unit_price": 1060,
+     "description": "Safety helmet, ISI marked"
+    },
+    {
+     "amount": 8400,
+     "quantity": 20,
+     "item_code": "HS-GLV",
+     "unit_price": 420,
+     "description": "Nitrile gloves, box of 100"
+    }
+   ],
+   "total": 72452,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Haldenwerk Safety Supplies Pvt Ltd"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "27AAFCH7310K1Z8"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "HSS-INV-3392"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "8 October 2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2306"
+    },
+    {
+     "field": "total",
+     "quote": "72,452.00"
+    }
+   ],
+   "subtotal": 61400,
+   "po_number": "PO-2306",
+   "vendor_name": "Haldenwerk Safety Supplies Pvt Ltd",
+   "invoice_date": "2026-10-08",
+   "vendor_tax_id": "27AAFCH7310K1Z8",
+   "invoice_number": "HSS-INV-3392"
+  },
+  "created_at": "2026-11-07T13:08:23.549Z"
+ },
+ {
+  "key": "084cee544f2a8fd805426f19fdf0d1e68dbdaf2c67cac4ee8fbf9b71ae234c24",
+  "value": {
+   "tax": 9342,
+   "lines": [
+    {
+     "amount": 33000,
+     "quantity": 15,
+     "item_code": "TL-VIAL",
+     "unit_price": 2200,
+     "description": "Glass sample vials 2 mL, pack of 100"
+    },
+    {
+     "amount": 18900,
+     "quantity": 6,
+     "item_code": "TL-ETH",
+     "unit_price": 3150,
+     "description": "Ethanol absolute, 5 L"
+    }
+   ],
+   "total": 61242,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "TANAGER LAB CONSUMABLES PVT LTD"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "36AAHCT9087L1Z2"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "TLC-26-0233"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "07/10/2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2305"
+    },
+    {
+     "field": "total",
+     "quote": "61,242.00"
+    }
+   ],
+   "subtotal": 51900,
+   "po_number": "PO-2305",
+   "vendor_name": "TANAGER LAB CONSUMABLES PVT LTD",
+   "invoice_date": "2026-10-07",
+   "vendor_tax_id": "36AAHCT9087L1Z2",
+   "invoice_number": "TLC-26-0233"
+  },
+  "created_at": "2026-11-07T13:08:24.222Z"
+ },
+ {
+  "key": "2a0c9fe164703f720dcbf65332a683de8832a2ffd4e0039533b01ed1863ae79c",
+  "value": {
+   "tax": 11043,
+   "lines": [
+    {
+     "amount": 33600,
+     "quantity": 800,
+     "item_code": "KC-BOX-L",
+     "unit_price": 42,
+     "description": "Corrugated carton, large (5-ply)"
+    },
+    {
+     "amount": 27750,
+     "quantity": 1500,
+     "item_code": "KC-BOX-S",
+     "unit_price": 18.5,
+     "description": "Corrugated carton, small (3-ply)"
+    }
+   ],
+   "total": 72393,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "KAVERI CORRUGATES PVT LTD"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "29AAKCK4821M1Z3"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "KC/26-27/0419"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "09/10/2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2307"
+    },
+    {
+     "field": "total",
+     "quote": "72,393.00"
+    }
+   ],
+   "subtotal": 61350,
+   "po_number": "PO-2307",
+   "vendor_name": "KAVERI CORRUGATES PVT LTD",
+   "invoice_date": "2026-10-09",
+   "vendor_tax_id": "29AAKCK4821M1Z3",
+   "invoice_number": "KC/26-27/0419"
+  },
+  "created_at": "2026-11-07T13:13:18.868Z"
+ },
+ {
+  "key": "8166c4da7b8d68aee15ce41afe65ca6b42afa0f81770c2013f3d5893895de6aa",
+  "value": {
+   "tax": 12150,
+   "lines": [
+    {
+     "amount": 67500,
+     "quantity": 10,
+     "item_code": "MD-DOCK",
+     "unit_price": 6750,
+     "description": "USB-C docking station"
+    }
+   ],
+   "total": 79650,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Meridian Desk & IT Pvt Ltd"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "27AAJCM5503D1Z6"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "MDI-0063"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "12 October 2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2310"
+    },
+    {
+     "field": "total",
+     "quote": "Rs. 79,650.00"
+    }
+   ],
+   "subtotal": 67500,
+   "po_number": "PO-2310",
+   "vendor_name": "Meridian Desk & IT Pvt Ltd",
+   "invoice_date": "2026-10-12",
+   "vendor_tax_id": "27AAJCM5503D1Z6",
+   "invoice_number": "MDI-0063"
+  },
+  "created_at": "2026-11-07T13:13:57.012Z"
+ },
+ {
+  "key": "14605dffb7ccf4e7c297d0d978d8f3c821c38fd9eb7ca846807663d5b4684196",
+  "value": {
+   "tax": 7830,
+   "lines": [
+    {
+     "amount": 32400,
+     "quantity": 60,
+     "item_code": "SE-MCB",
+     "unit_price": 540,
+     "description": "MCB 32A double pole"
+    },
+    {
+     "amount": 11100,
+     "quantity": 6,
+     "item_code": "SE-CBL",
+     "unit_price": 1850,
+     "description": "Copper cable 2.5 sq mm, 25 m coil"
+    }
+   ],
+   "total": 51330,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Sutlej Electricals Pvt Ltd — Ludhiana"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "03AAGCS2294P1Z1"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "SE2026-157"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "2026-10-13"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2311"
+    },
+    {
+     "field": "total",
+     "quote": "51,330.00"
+    }
+   ],
+   "subtotal": 43500,
+   "po_number": "PO-2311",
+   "vendor_name": "Sutlej Electricals Pvt Ltd — Ludhiana",
+   "invoice_date": "2026-10-13",
+   "vendor_tax_id": "03AAGCS2294P1Z1",
+   "invoice_number": "SE2026-157"
+  },
+  "created_at": "2026-11-07T13:14:15.779Z"
+ },
+ {
+  "key": "6ab9ce11e7ad9406487cc8d2f715e1f888c9d73f8ccbda4887433c55e633a08d",
+  "value": {
+   "tax": 7236,
+   "lines": [
+    {
+     "amount": 40200,
+     "quantity": 30,
+     "item_code": "TL-PIP",
+     "unit_price": 1340,
+     "description": "Pipette tips 200 uL, rack of 960"
+    }
+   ],
+   "total": 47436,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "TANAGER LAB CONSUMABLES PVT LTD"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "36AAHCT9087L1Z2"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "TLC-26-0241"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "14/10/2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2312"
+    },
+    {
+     "field": "total",
+     "quote": "47,436.00"
+    }
+   ],
+   "subtotal": 40200,
+   "po_number": "PO-2312",
+   "vendor_name": "TANAGER LAB CONSUMABLES PVT LTD",
+   "invoice_date": "2026-10-14",
+   "vendor_tax_id": "36AAHCT9087L1Z2",
+   "invoice_number": "TLC-26-0241"
+  },
+  "created_at": "2026-11-07T13:14:28.909Z"
+ },
+ {
+  "key": "5a734a5e8d07f9967b0d405d8a5ddaf0d05bdb89314a8787dd9de41442d86555",
+  "value": {
+   "tax": 3510,
+   "lines": [
+    {
+     "amount": 19500,
+     "quantity": 300,
+     "item_code": "KC-TAPE",
+     "unit_price": 65,
+     "description": "BOPP packing tape, 48mm x 65m"
+    }
+   ],
+   "total": 23010,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "KAVERI CORRUGATES PVT LTD"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "29AAKCK4821M1Z3"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "KC/26-27/0427"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "15/10/2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2313"
+    },
+    {
+     "field": "total",
+     "quote": "23,010.00"
+    }
+   ],
+   "subtotal": 19500,
+   "po_number": "PO-2313",
+   "vendor_name": "KAVERI CORRUGATES PVT LTD",
+   "invoice_date": "2026-10-15",
+   "vendor_tax_id": "29AAKCK4821M1Z3",
+   "invoice_number": "KC/26-27/0427"
+  },
+  "created_at": "2026-11-07T13:14:38.987Z"
+ },
+ {
+  "key": "090a407308e1805b5de2819a2a64319222a1f8a3456416b1f37a4c0fd130e5c3",
+  "value": {
+   "tax": 8280,
+   "lines": [
+    {
+     "amount": 26000,
+     "quantity": 100,
+     "item_code": "HS-VST",
+     "unit_price": 260,
+     "description": "Hi-vis reflective vest"
+    },
+    {
+     "amount": 20000,
+     "quantity": 20,
+     "item_code": "HS-HLM",
+     "unit_price": 1000,
+     "description": "Safety helmet, ISI marked"
+    }
+   ],
+   "total": 54280,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Haldenwerk Safety Supplies Pvt Ltd"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "27AAFCH7310K1Z8"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "HSS-INV-3405"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "16 October 2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2314"
+    },
+    {
+     "field": "total",
+     "quote": "54,280.00"
+    }
+   ],
+   "subtotal": 46000,
+   "po_number": "PO-2314",
+   "vendor_name": "Haldenwerk Safety Supplies Pvt Ltd",
+   "invoice_date": "2026-10-16",
+   "vendor_tax_id": "27AAFCH7310K1Z8",
+   "invoice_number": "HSS-INV-3405"
+  },
+  "created_at": "2026-11-07T13:14:51.411Z"
+ },
+ {
+  "key": "5fc0f29a30ec6c0d04434bb7dd724313f6d6d4412d89d819e5967996f92863b3",
+  "value": {
+   "tax": 8865,
+   "lines": [
+    {
+     "amount": 22250,
+     "quantity": 25,
+     "item_code": "MD-KB",
+     "unit_price": 890,
+     "description": "Wired keyboard, full size"
+    },
+    {
+     "amount": 27000,
+     "quantity": 4,
+     "item_code": "MD-DOCK",
+     "unit_price": 6750,
+     "description": "USB-C docking station"
+    }
+   ],
+   "total": 58115,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Meridian Desk & IT Pvt Ltd"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "27AAJCM5503D1Z6"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "MDI-0071"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "17 October 2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2315"
+    },
+    {
+     "field": "total",
+     "quote": "58,115.00"
+    }
+   ],
+   "subtotal": 49250,
+   "po_number": "PO-2315",
+   "vendor_name": "Meridian Desk & IT Pvt Ltd",
+   "invoice_date": "2026-10-17",
+   "vendor_tax_id": "27AAJCM5503D1Z6",
+   "invoice_number": "MDI-0071"
+  },
+  "created_at": "2026-11-07T13:15:08.886Z"
+ },
+ {
+  "key": "bbc352f38907eb6d5d3a16d373b6aee218c064efca7b0e254b099822655fb91a",
+  "value": {
+   "tax": 3780,
+   "lines": [
+    {
+     "amount": 21000,
+     "quantity": 500,
+     "item_code": "KC-BOX-L",
+     "unit_price": 42,
+     "description": "Corrugated carton, large (5-ply)"
+    }
+   ],
+   "total": 24780,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "KAVERI CORRUGATES PVT LTD"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "29AAKCK4821M1Z3"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "KC/26-27/0433"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "19/10/2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2316"
+    },
+    {
+     "field": "total",
+     "quote": "24,780.00"
+    }
+   ],
+   "subtotal": 21000,
+   "po_number": "PO-2316",
+   "vendor_name": "KAVERI CORRUGATES PVT LTD",
+   "invoice_date": "2026-10-19",
+   "vendor_tax_id": "29AAKCK4821M1Z3",
+   "invoice_number": "KC/26-27/0433"
+  },
+  "created_at": "2026-11-07T13:15:18.908Z"
+ },
+ {
+  "key": "dac6cb6127b47ff63fd736086fe89eec39201843f019e5983c4bb22f694044b8",
+  "value": {
+   "tax": 4536,
+   "lines": [
+    {
+     "amount": 25200,
+     "quantity": 60,
+     "item_code": "HS-GLV",
+     "unit_price": 420,
+     "description": "Nitrile gloves, box of 100"
+    }
+   ],
+   "total": 29736,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Haldenwerk Safety Supplies Pvt Ltd"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "27AAFCH7310K1Z8"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "HSS-INV-3417"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "21 October 2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2317"
+    },
+    {
+     "field": "total",
+     "quote": "29,736.00"
+    }
+   ],
+   "subtotal": 25200,
+   "po_number": "PO-2317",
+   "vendor_name": "Haldenwerk Safety Supplies Pvt Ltd",
+   "invoice_date": "2026-10-21",
+   "vendor_tax_id": "27AAFCH7310K1Z8",
+   "invoice_number": "HSS-INV-3417"
+  },
+  "created_at": "2026-11-07T13:15:40.843Z"
+ },
+ {
+  "key": "53e8f2cbd08b27b5406895aad9b2b29867e73053b206dd11f4b6931e6cf310eb",
+  "value": {
+   "tax": 28944,
+   "lines": [
+    {
+     "amount": 160800,
+     "quantity": 120,
+     "item_code": "TL-PIP",
+     "unit_price": 1340,
+     "description": "Pipette tips 200 uL, rack of 960"
+    }
+   ],
+   "total": 189744,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "TANAGER LAB CONSUMABLES PVT LTD"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "36AAHCT9087L1Z2"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "TLC-26-0256"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "22/10/2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2318"
+    },
+    {
+     "field": "total",
+     "quote": "1,89,744.00"
+    }
+   ],
+   "subtotal": 160800,
+   "po_number": "PO-2318",
+   "vendor_name": "TANAGER LAB CONSUMABLES PVT LTD",
+   "invoice_date": "2026-10-22",
+   "vendor_tax_id": "36AAHCT9087L1Z2",
+   "invoice_number": "TLC-26-0256"
+  },
+  "created_at": "2026-11-07T13:15:57.444Z"
+ },
+ {
+  "key": "053c94f2c19358cbfc8a3d4a5ab9d4a5d6aa0e1c01178d06e7e6a62ffc2edc75",
+  "value": {
+   "tax": 6156.36,
+   "lines": [
+    {
+     "amount": 18722,
+     "quantity": 10,
+     "item_code": "SE-CBL",
+     "unit_price": 1872.2,
+     "description": "Copper cable 2.5 sq mm, 25 m coil"
+    },
+    {
+     "amount": 15480,
+     "quantity": 12,
+     "item_code": "SE-LED",
+     "unit_price": 1290,
+     "description": "LED panel 2x2 ft, 36W"
+    }
+   ],
+   "total": 40358.36,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Sutlej Electricals Pvt Ltd"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "03AAGCS2294P1Z1"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "SE2026-152"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "2026-10-12"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2309"
+    },
+    {
+     "field": "total",
+     "quote": "40,358.36"
+    }
+   ],
+   "subtotal": 34202,
+   "po_number": "PO-2309",
+   "vendor_name": "Sutlej Electricals Pvt Ltd",
+   "invoice_date": "2026-10-12",
+   "vendor_tax_id": "03AAGCS2294P1Z1",
+   "invoice_number": "SE2026-152"
+  },
+  "created_at": "2026-11-07T13:17:15.645Z"
+ }
+]
