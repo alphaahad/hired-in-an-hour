@@ -9,7 +9,7 @@ const plexSans = IBM_Plex_Sans({ variable: "--font-plex-sans", subsets: ["latin"
 const plexMono = IBM_Plex_Mono({ variable: "--font-plex-mono", subsets: ["latin"], weight: ["400", "500"] });
 
 export const metadata: Metadata = {
-  title: "Zamp in an Hour · onboarding prototype",
+  title: "Hired in an Hour · an AP digital employee",
   description: "A prototype that takes a finance team from zero to a working AP digital employee in under an hour. All data is synthetic mock data.",
 };
 

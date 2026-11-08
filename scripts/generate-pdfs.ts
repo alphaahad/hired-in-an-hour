@@ -122,7 +122,7 @@ async function main() {
   for (const inv of incomingInvoices) {
     const doc = await PDFDocument.create();
     doc.setTitle(`MOCK invoice ${inv.invoice_number}`);
-    doc.setProducer("Zamp in an Hour demo (synthetic data)");
+    doc.setProducer("Hired in an Hour demo (synthetic data)");
     const page = doc.addPage([595, 842]);
     const c: Ctx = { page, font: await doc.embedFont(StandardFonts.Helvetica), bold: await doc.embedFont(StandardFonts.HelveticaBold) };
     ({ classic, modern, compact })[inv.layout](c, inv);

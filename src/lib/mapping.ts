@@ -22,8 +22,8 @@ export type TargetField = {
 
 export const IGNORE = "__ignore";
 
-// Canonical AP schema. GUESS: Zamp's internal schema is not public; this is a reasonable
-// AP-matching schema, tracked in DECISIONS.md.
+// Canonical AP schema: the fields the employee needs to match an invoice. Every ERP's fields are
+// mapped onto this; it's an assumption worth validating with real AP teams (see DECISIONS.md).
 export const targets: TargetField[] = [
   { key: "vendor_code", label: "Vendor ID", record: "vendor", type: "text", required: true, synonyms: ["entity", "entityid", "vendor", "id", "code"], pattern: /^[A-Z][A-Z-]+$/, why: "Join key for vendor master" },
   { key: "vendor_name", label: "Vendor legal name", record: "vendor", type: "text", required: true, synonyms: ["company", "name", "companyname", "legal"], why: "Fallback vendor matching when tax ID is unreadable" },

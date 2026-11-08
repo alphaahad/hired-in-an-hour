@@ -1,7 +1,7 @@
 # DECISIONS.md
 
 Every product tradeoff in this build, in the order I made it. Each entry says what I chose, what I gave up, and why.
-Items marked **GUESS** are assumptions about Zamp's product or customers that I couldn't verify from public material. Check these first.
+Items marked **ASSUMPTION** are beliefs about finance teams and their tools that this prototype can't prove on its own. They are collected in §19 as the first things to test with real users.
 
 ---
 
@@ -15,9 +15,9 @@ Items marked **GUESS** are assumptions about Zamp's product or customers that I 
 - If the bill is later reversed, the timestamp stands. Reversals are tracked separately as a trust signal (see 14).
 - **I'd manage to p90, not median.** The median flatters you; the slow customers are the ones who churn before value.
 
-**Why this number and not "accuracy" or "invoices processed":** a digital employee creates zero value until it's live, and every day of setup is a day the customer is paying without a return. Onboarding time is also the number that caps how fast Zamp can sell: implementation capacity is the bottleneck for an enterprise AI product. Accuracy matters, but only once you're live.
+**Why this number and not "accuracy" or "invoices processed":** a digital employee creates zero value until it's live, and every day of setup is a day the customer is paying without a return. Onboarding time is also the number that caps how fast an AI-employee product can grow: implementation capacity is the bottleneck for enterprise AI. Accuracy matters, but only once you're live.
 
-**GUESS:** that today's onboarding takes weeks and that ERP connection, mapping and trust are the long poles. It could just as well be security review, process discovery, or getting the customer's AP team in a room.
+**ASSUMPTION:** that today's onboarding takes weeks and that ERP connection, mapping and trust are the long poles. It could just as well be security review, process discovery, or getting the customer's AP team in a room.
 
 ## 2. Go deep on one hero flow, not wide
 
@@ -29,9 +29,9 @@ Items marked **GUESS** are assumptions about Zamp's product or customers that I 
 
 **Decision:** NetSuite, mocked faithfully (record names `vendor`, `purchaseOrder`, `itemReceipt`, `vendorBill`; `custbody_*` custom fields; `createdFrom` linking receipts to POs; a REST-style list envelope).
 **Considered:** QuickBooks Online (it has a free sandbox, but no goods-receipt record, so a real 3-way match can't be modelled, and it signals SMB). Dynamics 365 Business Central (it has a free trial, I've shipped an integration for it before, and it has purchase receipts).
-**Why NetSuite:** it's the standard ERP for the mid-market and enterprise finance teams Zamp sells to, and its record model makes 3-way match natural.
+**Why NetSuite:** it's a standard ERP for mid-market and enterprise finance teams, and its record model makes 3-way match natural.
 **Tradeoff:** NetSuite has no free sandbox, so a real connector needs a partner or customer account. Week-2 work either way.
-**GUESS:** that NetSuite is among the most common ERPs in Zamp's book.
+**ASSUMPTION:** that NetSuite is among the most common ERPs for the teams this would serve.
 
 ## 4. Mapping: rules first, LLM only where rules can't verify, human decides
 
@@ -70,7 +70,7 @@ Items marked **GUESS** are assumptions about Zamp's product or customers that I 
 
 **Decision:** unit price may exceed the PO by up to **2%** (passes with a warning); billed quantity may not exceed received quantity (0 tolerance); ₹1 rounding slack.
 A seeded +1.2% invoice demonstrates the warning-but-pass path.
-**GUESS:** real customers configure these per vendor or category. 2% is a common default, but I don't know Zamp's.
+**ASSUMPTION:** real customers configure these per vendor or category. 2% is a common default, not a universal one.
 
 ## 9. Duplicates: normalise, and check against paid bills
 
@@ -151,15 +151,15 @@ A seeded +1.2% invoice demonstrates the warning-but-pass path.
 | Mobile, dark mode | AP review happens at a desk |
 | Multi-currency | All INR; currency is mapped and would be checked |
 
-## 19. GUESSES about Zamp (verify against zamp.ai)
+## 19. Assumptions to test with real users
 
-1. Onboarding currently takes weeks, and connection, mapping and trust are the bottlenecks.
-2. NetSuite is common among Zamp's customers.
-3. Zamp maps customer ERPs to an internal canonical schema. Mine (`src/lib/mapping.ts → targets`) is invented.
-4. Zamp presents digital employees as an inbox with human approvals (vs. chat or Slack-first).
-5. Default tolerances: 2% price, 0 over-receipt.
-6. There isn't already a self-serve setup flow. If there is, this becomes "here's how I'd measure and shorten it".
-7. India GST invoices are relevant (I used Indian vendors; Zamp's customers are largely global).
+1. Onboarding an AI employee takes weeks today, and ERP connection, field mapping and trust are the bottlenecks (not security review, procurement or process discovery).
+2. NetSuite is common among the target finance teams; the mapping engine is ERP-agnostic, but the connector isn't.
+3. A canonical AP schema (`src/lib/mapping.ts → targets`) covers what matching needs across ERPs. Mine is a reasonable design, not a validated one.
+4. Finance teams want to supervise an AI employee through a work log and a queue of requests, rather than through chat or a Slack bot.
+5. Default tolerances of 2% on price and zero over-receipt are acceptable starting points.
+6. Watching the employee work builds trust faster than reading a summary of what it did.
+7. Indian GST invoices are a good test bed: the formats vary a lot, and tax-ID matching is strict.
 
 ## 20. The employee is the main character
 
@@ -175,4 +175,4 @@ A seeded +1.2% invoice demonstrates the warning-but-pass path.
 
 **What stayed the same:** the match engine, mapping scorer, LLM layer, sync, reversal and metric are untouched. The old screens remain as records (Invoices, invoice detail, Audit trail, Metrics, and the setup pages behind "Review all" and "Log").
 
-**Persona guardrails:** fictional and user-named; nothing is styled as Zamp's own product; the vendor query is drafted, never sent (email is out of scope), and says so.
+**Persona guardrails:** fictional and user-named, never presented as a real person; the vendor query is drafted, never sent (email is out of scope), and says so.

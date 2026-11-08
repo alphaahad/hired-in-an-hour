@@ -29,7 +29,7 @@ export function TopBar() {
   async function reset() {
     setBusy(true);
     await api("/api/reset", { json: {} });
-    window.dispatchEvent(new Event("zamp:refresh"));
+    window.dispatchEvent(new Event("app:refresh"));
     router.push("/");
     router.refresh();
     setBusy(false);
@@ -40,7 +40,7 @@ export function TopBar() {
       <div className="mx-auto flex h-12 max-w-[1400px] items-center gap-6 px-5">
         <Link href="/" className="flex items-center gap-2 text-sm font-semibold tracking-tight">
           <span className="grid size-6 place-items-center rounded bg-ink text-[11px] font-bold text-white">1h</span>
-          Zamp in an Hour
+          Hired in an Hour
         </Link>
         <nav className="flex items-center gap-1">
           {NAV.map((n) => (
@@ -51,7 +51,7 @@ export function TopBar() {
         </nav>
         <div className="ml-auto flex items-center gap-3">
           <MockBadge />
-          <span className={cx("hidden text-xs text-muted", !confirming && "xl:inline")}>Prototype by Ahad Nadeem · not a Zamp product</span>
+          <span className={cx("hidden text-xs text-muted", !confirming && "xl:inline")}>A prototype by Ahad Nadeem</span>
           {/* Inline confirm instead of a browser dialog: the old run is kept (it stays in the metrics as its own session),
               so this is a mode switch, not a destructive action, and deserves a light touch. */}
           {confirming ? (

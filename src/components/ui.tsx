@@ -91,4 +91,4 @@ export async function api<T = unknown>(path: string, init?: RequestInit & { json
 }
 
 /** Tell the checklist rail (and anything else listening) that state changed. */
-export const refreshState = () => window.dispatchEvent(new Event("zamp:refresh"));
+export const refreshState = () => window.dispatchEvent(new Event("app:refresh"));

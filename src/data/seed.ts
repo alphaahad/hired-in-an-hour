@@ -1,4 +1,4 @@
-// Deterministic synthetic dataset — MOCK DATA. No real companies, people or Zamp data.
+// Deterministic synthetic dataset — MOCK DATA. No real companies, people or customer data.
 // The same function feeds the mock NetSuite API, the PDF generator and the tests.
 import type { IncomingInvoice, ItemReceipt, PurchaseOrder, Vendor, VendorBill, Item, InvoiceLine } from "@/lib/types";
 

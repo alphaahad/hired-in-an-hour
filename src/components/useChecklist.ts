@@ -13,8 +13,8 @@ export function useChecklist() {
   const load = useCallback(() => api<ChecklistState>("/api/state").then(setState).catch(() => {}), []);
   useEffect(() => {
     load();
-    window.addEventListener("zamp:refresh", load);
-    return () => window.removeEventListener("zamp:refresh", load);
+    window.addEventListener("app:refresh", load);
+    return () => window.removeEventListener("app:refresh", load);
   }, [load]);
   return { state, reload: load };
 }
