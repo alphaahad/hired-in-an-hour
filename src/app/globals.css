@@ -113,3 +113,14 @@ body {
   :root { --color-line: #9ca3af; --color-line-2: #6b7280; --color-muted: #374151; }
   .material-bar { background: var(--color-surface); box-shadow: 0 1px 0 #6b7280; }
 }
+
+/* "Working" presence: a slow, gentle breath, not a blink. Off for reduced motion. */
+@keyframes presence {
+  50% { opacity: 0.35; }
+}
+.presence-pulse {
+  animation: presence 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .presence-pulse, .animate-spin { animation: none !important; }
+}

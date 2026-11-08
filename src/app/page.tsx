@@ -1,63 +1,82 @@
-"use client";
 import Link from "next/link";
-import { ArrowRight, Database, GitCompareArrows, ShieldCheck, Workflow } from "lucide-react";
-import { Card } from "@/components/ui";
-import { useChecklist } from "@/components/useChecklist";
+import { ArrowRight, Check, X } from "lucide-react";
+import { getWorkspace } from "@/lib/workspace";
+import { initials, personaColour } from "@/lib/narrate";
 
-const STEPS = [
-  { icon: Database, title: "Connect NetSuite", body: "Read-only sandbox connection. We discover vendors, POs, goods receipts and past bills." },
-  { icon: Workflow, title: "Map fields with confidence", body: "Standard fields map themselves. Ambiguous custom fields come to you with evidence." },
-  { icon: GitCompareArrows, title: "Test sync, then undo if you like", body: "A live log, a partial-success summary, and a one-click undo. Nothing is written to the ERP." },
-  { icon: ShieldCheck, title: "Supervise the AP employee", body: "It reads invoices, runs a 3-way match, cites every exception and waits for your approval." },
+export const dynamic = "force-dynamic";
+
+const WILL = [
+  "Read every invoice PDF in the AP inbox",
+  "Match each one against its purchase order and goods receipt",
+  "Stop and show you the evidence when something doesn't add up",
+  "Draft the query to the vendor so you don't have to",
 ];
+const WONT = ["Post a bill to NetSuite without your approval", "Write anything to NetSuite while it's onboarding"];
 
-const PRIMARY_LINK = "pressable inline-flex h-9 items-center justify-center gap-1.5 rounded-md bg-accent px-3.5 text-sm font-medium text-white hover:bg-blue-800";
-
-export default function Start() {
-  const { state } = useChecklist();
-  const started = !!state?.workspace.setupStartedAt;
-  const next = state?.steps.find((s) => !s.done)?.href ?? "/employee";
+export default async function Hire({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
+  const { error } = await searchParams;
+  const w = await getWorkspace();
+  const hired = w.employee_name && w.setup_started_at ? w.employee_name : null;
+  const c = hired ? personaColour(hired) : null;
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-14">
-      <div className="max-w-2xl">
+    <div className="mx-auto grid max-w-5xl gap-10 px-5 py-14 lg:grid-cols-[minmax(0,1fr)_400px]">
+      <div>
         <div className="mb-3 text-xs font-medium tracking-wide text-muted uppercase">Onboarding prototype · AP digital employee</div>
-        <h1 className="text-4xl font-semibold tracking-tight text-balance">From a new finance team to a working AP employee in under an hour.</h1>
-        <p className="mt-4 text-[15px] leading-relaxed text-ink-2">
-          A digital employee is only valuable once it is connected, mapped and trusted. Today those three steps usually turn into weeks of
-          implementation calls. This prototype compresses them into one guided flow and measures a single number:
+        <h1 className="text-4xl font-semibold tracking-tight text-balance">Hire an AP employee. Have it posting bills within the hour.</h1>
+        <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-2">
+          A digital employee only creates value once it&apos;s connected, understands your ERP, and you trust it. Today that takes weeks of
+          implementation calls. Here, your new hire onboards itself, asks you only what it can&apos;t work out, and gets to work while you watch.
         </p>
-        <div className="mt-5 inline-flex items-baseline gap-3 rounded-lg border border-line bg-surface px-4 py-3">
-          <span className="text-sm text-muted">Time to first working employee</span>
-          <span className="text-lg font-semibold">target &lt; 60 min</span>
-        </div>
-        <p className="mt-2 text-xs text-muted">Measured from “Start setup” to the first vendor bill the employee posts and a human approves.</p>
-        <div className="mt-7 flex items-center gap-3">
-          {/* Real links, not JS buttons: they work even if clicked before the page finishes loading.
-              The connect page starts the timer when it opens. */}
-          <Link href={started ? next : "/setup/connect"} className={PRIMARY_LINK}>
-            {started ? "Continue setup" : "Start setup · timer starts"} <ArrowRight className="size-4" />
-          </Link>
-          <span className="text-xs text-muted">No sign-up. Synthetic data only.</span>
-        </div>
-      </div>
 
-      <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {STEPS.map((s, i) => (
-          <Card key={s.title} className="p-4">
-            <div className="flex items-center gap-2 text-xs text-muted">
-              <s.icon className="size-4 text-accent" /> Step {i + 1}
+        {hired ? (
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <Link href="/desk" className="pressable inline-flex h-10 items-center gap-2 rounded-md bg-accent px-4 text-sm font-medium text-white hover:bg-blue-800">
+              <span className="grid size-6 place-items-center rounded-full text-[11px] font-semibold text-white" style={{ background: c!.bg }}>{initials(hired)}</span>
+              Go to {hired}&apos;s desk <ArrowRight className="size-4" />
+            </Link>
+            <span className="text-xs text-muted">Want a fresh start? Use Reset demo at the top.</span>
+          </div>
+        ) : (
+          <form action="/api/hire" method="post" className="mt-8 max-w-md">
+            <label htmlFor="name" className="text-sm font-medium">What should we call your new AP employee?</label>
+            <div className="mt-2 flex gap-2">
+              <input
+                id="name" name="name" required maxLength={24} autoComplete="off" placeholder="e.g. Asha"
+                className="h-10 min-w-0 flex-1 rounded-md border border-line-2 bg-surface px-3 text-[15px] focus:border-accent focus:outline-none"
+              />
+              <button type="submit" className="pressable inline-flex h-10 items-center gap-1.5 rounded-md bg-accent px-4 text-sm font-medium whitespace-nowrap text-white hover:bg-blue-800">
+                Hire · clock starts <ArrowRight className="size-4" />
+              </button>
             </div>
-            <div className="mt-2 text-sm font-medium">{s.title}</div>
-            <p className="mt-1 text-xs leading-relaxed text-muted">{s.body}</p>
-          </Card>
-        ))}
+            {error === "name" && <p className="mt-2 text-sm text-bad">Use 1–24 letters, numbers or spaces.</p>}
+            <p className="mt-2 text-xs text-muted">No sign-up. Everything it touches is synthetic mock data.</p>
+          </form>
+        )}
+
+        <div className="mt-10 border-t border-line pt-5 text-sm text-muted">
+          <span className="font-medium text-ink-2">The one number this prototype is built around:</span> time from hire to the first bill your employee posts with your approval.
+          Target <span className="font-semibold text-ink">under 60 minutes</span>.
+        </div>
       </div>
 
-      <p className="mt-10 max-w-2xl text-xs leading-relaxed text-muted">
-        All vendors, invoices, purchase orders, receipts and NetSuite records are synthetic <strong>mock data</strong> generated for this demo.
-        The NetSuite connection is a faithful mock of its record API; no real ERP, customer or Zamp data is involved.
-      </p>
+      {/* The job description: what you're hiring, in plain terms. */}
+      <aside className="h-fit rounded-xl border border-line bg-surface p-5">
+        <div className="text-xs font-medium tracking-wide text-muted uppercase">Job description</div>
+        <div className="mt-1 text-lg font-semibold">AP Specialist</div>
+        <div className="text-sm text-muted">Accounts payable · reports to you · read-only NetSuite access</div>
+        <div className="mt-4 text-xs font-medium text-ink-2">Will</div>
+        <ul className="mt-1.5 space-y-1.5 text-sm">
+          {WILL.map((t) => <li key={t} className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-ok" />{t}</li>)}
+        </ul>
+        <div className="mt-4 text-xs font-medium text-ink-2">Won&apos;t</div>
+        <ul className="mt-1.5 space-y-1.5 text-sm">
+          {WONT.map((t) => <li key={t} className="flex gap-2"><X className="mt-0.5 size-4 shrink-0 text-bad" />{t}</li>)}
+        </ul>
+        <p className="mt-4 rounded-md bg-gray-50 p-2.5 text-xs leading-relaxed text-muted">
+          Supervised from day one. Autonomy is earned on your own invoices, not assumed.
+        </p>
+      </aside>
     </div>
   );
 }

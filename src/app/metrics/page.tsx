@@ -28,14 +28,14 @@ export default function Metrics() {
     <div className="animate-enter mx-auto max-w-5xl px-5 py-6">
       <PageHeader
         eyebrow="Measurement"
-        title="Time to first working employee"
+        title="Hire to first posted bill"
         actions={
           <label className="flex items-center gap-2 text-xs text-muted">
             <input type="checkbox" checked={internal} onChange={(e) => setInternal(e.target.checked)} /> Include rehearsal sessions
           </label>
         }
       >
-        Instrumented from real sessions of this demo: one session per workspace, from “Start setup” to the first approved bill. {d.me.internal && "This browser is marked as a rehearsal session and is excluded by default."}
+        Instrumented from real sessions of this demo: one session per workspace, from hiring the employee to the first bill it posts with your approval. {d.me.internal && "This browser is marked as a rehearsal session and is excluded by default."}
       </PageHeader>
 
       <div className="grid gap-3 sm:grid-cols-4">
@@ -77,7 +77,7 @@ export default function Metrics() {
             </div>
           ))}
         </div>
-        {f.sessions === 0 && <p className="mt-4 text-sm text-muted">No sessions yet. Start setup to create the first one.</p>}
+        {f.sessions === 0 && <p className="mt-4 text-sm text-muted">No sessions yet. Hire an employee to create the first one.</p>}
       </Card>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -93,7 +93,7 @@ export default function Metrics() {
           <ul className="mt-2 list-disc space-y-1 pl-4 text-xs leading-relaxed text-muted">
             <li>These are demo sessions on synthetic data, not customer onboardings. Real setups add credential procurement and IT approval, which this demo doesn&apos;t model.</li>
             <li>Each step counts once per workspace. “Reset demo” starts a new session, so abandoned runs show up as drop-off.</li>
-            <li>The clock starts at “Start setup”, not at contract signature. In production I&apos;d also track signature → first login.</li>
+            <li>The clock starts when you hire the employee, not at contract signature. In production I&apos;d also track signature → first login.</li>
           </ul>
         </Card>
       </div>

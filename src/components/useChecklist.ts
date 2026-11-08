@@ -4,6 +4,7 @@ import { api } from "./ui";
 
 export type ChecklistState = {
   workspace: { id: string; internal: boolean; setupStartedAt: string | null; firstEmployeeAt: string | null; now: string };
+  employee?: { name: string | null };
   steps: { key: string; label: string; href: string; done: boolean; detail: string }[];
 };
 

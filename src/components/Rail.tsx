@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Check, Timer } from "lucide-react";
 import { useChecklist } from "./useChecklist";
 import { cx } from "./ui";
+import { Avatar } from "./desk/Avatar";
 import { duration } from "@/lib/format";
 
 const TARGET_MS = 60 * 60 * 1000;
@@ -14,7 +15,7 @@ function Tick({ fresh }: { fresh: boolean }) {
   return <Check className={cx("size-3", fresh && "animate-settle")} strokeWidth={3} />;
 }
 
-/** The metric, always visible: time from "Start setup" to the first approved bill. */
+/** The metric, always visible: time from hiring to the first approved bill. */
 export function Rail() {
   const { state } = useChecklist();
   const path = usePathname();
@@ -40,9 +41,18 @@ export function Rail() {
   return (
     <aside className="w-72 shrink-0">
       <div className="sticky top-16 space-y-3">
+        {state?.employee?.name && (
+          <Link href="/desk" className="pressable flex items-center gap-2.5 rounded-lg border border-line bg-surface p-3 hover:bg-gray-50">
+            <Avatar name={state.employee.name} size={32} />
+            <span className="min-w-0">
+              <span className="block text-sm font-medium">{state.employee.name}</span>
+              <span className="block text-xs text-muted">AP Specialist · back to desk</span>
+            </span>
+          </Link>
+        )}
         <div className="rounded-lg border border-line bg-surface p-4">
           <div className="flex items-center gap-1.5 text-xs font-medium text-muted">
-            <Timer className="size-3.5" /> Time to first working employee
+            <Timer className="size-3.5" /> Hire to first posted bill
           </div>
           <div className={cx("mt-1.5 text-3xl font-semibold tracking-tight", finished ? "text-ok" : "text-ink")}>
             {started ? duration(elapsed) : "0s"}

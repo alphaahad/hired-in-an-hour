@@ -47,7 +47,7 @@ export const listActions = (ws: string, target?: string) =>
 
 // ---- funnel events ----
 export const FUNNEL = [
-  { name: "setup_started", label: "Started setup" },
+  { name: "setup_started", label: "Hired an employee" },
   { name: "erp_connected", label: "Connected NetSuite" },
   { name: "mappings_approved", label: "Approved field mappings" },
   { name: "test_sync_passed", label: "Test sync passed" },

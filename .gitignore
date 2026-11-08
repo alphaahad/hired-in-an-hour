@@ -50,3 +50,6 @@ next-env.d.ts
 # playwright
 /test-results/
 /playwright-report/
+
+# copied from node_modules on install
+/public/pdf.worker.min.mjs

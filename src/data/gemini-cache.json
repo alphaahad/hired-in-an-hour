@@ -925,5 +925,196 @@
    "invoice_number": "SE2026-152"
   },
   "created_at": "2026-11-07T13:17:15.645Z"
+ },
+ {
+  "key": "e10bcd2b20987942a2cf82f6bcb7076c55c6cb01b6a09a1c97a14b7d2c2d9713",
+  "value": {
+   "reason": "Sample values like 'PO-2201' explicitly use the 'PO-' prefix and match existing purchase order transaction IDs.",
+   "target": "bill_po",
+   "confidence": 0.92
+  },
+  "created_at": "2026-11-08T10:33:10.979Z"
+ },
+ {
+  "key": "2b0e38d4afe7458997e5e2bfdceb5e324cd5dd48c29661652df46bf0c18fd241",
+  "value": {
+   "reason": "The field name 'custbody_dept_code' and sample values like 'CC-WH-150' clearly indicate cost centers representing departmental budgets.",
+   "target": "cost_center",
+   "confidence": 0.95
+  },
+  "created_at": "2026-11-08T10:33:11.396Z"
+ },
+ {
+  "key": "af0aeb4f6177eed3e2dafdb4c62bc7dfc63ddc288bb283cefdab982f421180a4",
+  "value": {
+   "reason": "The field custbody_svc_date represents a service date based on sample values like '2026-07-04', which is not needed for core AP invoice matching since standard NetSuite fields like trandate handle invoice_date.",
+   "target": "__ignore",
+   "confidence": 0.88
+  },
+  "created_at": "2026-11-08T10:33:13.117Z"
+ },
+ {
+  "key": "2a7e1362d62b9f9a6db8519e489178ab8e0725ed3eb37ff5aa2b91434d44933f",
+  "value": {
+   "tax": 9288,
+   "lines": [
+    {
+     "amount": 51600,
+     "quantity": 40,
+     "item_code": "SE-LED",
+     "unit_price": 1290,
+     "description": "LED panel 2x2 ft, 36W"
+    }
+   ],
+   "total": 60888,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Sutlej Electricals Pvt Ltd"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "03AAGCS2294P1Z1"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "SE2026-148"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "2026-10-10"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2308"
+    },
+    {
+     "field": "total",
+     "quote": "60,888.00"
+    }
+   ],
+   "subtotal": 51600,
+   "po_number": "PO-2308",
+   "vendor_name": "Sutlej Electricals Pvt Ltd",
+   "invoice_date": "2026-10-10",
+   "vendor_tax_id": "03AAGCS2294P1Z1",
+   "invoice_number": "SE2026-148"
+  },
+  "created_at": "2026-11-08T10:35:31.148Z"
+ },
+ {
+  "key": "daf186cbcc1ef66d8c2cf6d7ec51398e78635071c5893accd812039b987b4671",
+  "value": {
+   "tax": 8838,
+   "lines": [
+    {
+     "amount": 31500,
+     "quantity": 10,
+     "item_code": "TL-ETH",
+     "unit_price": 3150,
+     "description": "Ethanol absolute, 5 L"
+    },
+    {
+     "amount": 17600,
+     "quantity": 8,
+     "item_code": "TL-VIAL",
+     "unit_price": 2200,
+     "description": "Glass sample vials 2 mL, pack of 100"
+    }
+   ],
+   "total": 57938,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "TANAGER LAB CONSUMABLES PVT LTD"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "36AAHCT9087L1Z2"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "TLC-26-0262"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "23/10/2026"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2319"
+    },
+    {
+     "field": "total",
+     "quote": "57,938.00"
+    }
+   ],
+   "subtotal": 49100,
+   "po_number": "PO-2319",
+   "vendor_name": "TANAGER LAB CONSUMABLES PVT LTD",
+   "invoice_date": "2026-10-23",
+   "vendor_tax_id": "36AAHCT9087L1Z2",
+   "invoice_number": "TLC-26-0262"
+  },
+  "created_at": "2026-11-08T10:37:41.275Z"
+ },
+ {
+  "key": "4559ed8ccd6e9a71df0ecea2f05f36ac3141de42b4e308baf777b8086d79b645",
+  "value": {
+   "tax": 13068,
+   "lines": [
+    {
+     "amount": 45600,
+     "quantity": 4,
+     "item_code": "MD-MON",
+     "unit_price": 11400,
+     "description": "24-inch IPS monitor"
+    },
+    {
+     "amount": 27000,
+     "quantity": 4,
+     "item_code": "MD-DOCK",
+     "unit_price": 6750,
+     "description": "USB-C docking station"
+    }
+   ],
+   "total": 85668,
+   "currency": "INR",
+   "evidence": [
+    {
+     "field": "vendor_name",
+     "quote": "Meridian Desk & IT Pvt Ltd — Mumbai"
+    },
+    {
+     "field": "vendor_tax_id",
+     "quote": "27AAJCM5503D1Z6"
+    },
+    {
+     "field": "invoice_number",
+     "quote": "MDI42"
+    },
+    {
+     "field": "invoice_date",
+     "quote": "2026-10-20"
+    },
+    {
+     "field": "po_number",
+     "quote": "PO-2204"
+    },
+    {
+     "field": "total",
+     "quote": "85,668.00"
+    }
+   ],
+   "subtotal": 72600,
+   "po_number": "PO-2204",
+   "vendor_name": "Meridian Desk & IT Pvt Ltd — Mumbai",
+   "invoice_date": "2026-10-20",
+   "vendor_tax_id": "27AAJCM5503D1Z6",
+   "invoice_number": "MDI42"
+  },
+  "created_at": "2026-11-08T10:44:31.617Z"
  }
 ]

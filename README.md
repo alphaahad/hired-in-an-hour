@@ -16,17 +16,21 @@ A digital employee is only valuable once it's **connected** to the ERP, its fiel
 
 **Time to first working digital employee.** Target: **< 60 minutes**, managed at p90.
 
-Measured from **Start setup** to the **first vendor bill the AP employee posts after a passed 3-way match and a human approval**. The definition, edge cases and what it deliberately doesn't capture are in [DECISIONS.md §1](DECISIONS.md#1-the-metric).
+Measured from **hiring the employee** to the **first vendor bill the AP employee posts after a passed 3-way match and a human approval**. The definition, edge cases and what it deliberately doesn't capture are in [DECISIONS.md §1](DECISIONS.md#1-the-metric).
 
-## The flow (one hero path, done deeply)
+## The flow: you hire a coworker, it onboards itself
 
-| Step | What happens | The real logic underneath |
+| Step | What you see | The real logic underneath |
 |---|---|---|
-| 1. Connect NetSuite | Read-only token auth to a mock sandbox; discovers 5 vendors, 31 POs, 30 receipts, 12 historical bills | Faithful mock of NetSuite's record API (`/api/erp/{record}`) |
-| 2. Map fields | 19 of 22 fields auto-map; 3 ambiguous custom fields come to you with evidence | Name + value-format + **referential** scoring; Gemini only for what rules can't verify; LLM never auto-approves |
-| 3. Test sync | Streamed live log, **partial success** (76/78; 2 quarantined with reasons), **one-click undo** | Mapping applied and required fields validated per record |
-| 4. AP employee | Reads 20 invoice PDFs (3 layouts), 3-way matches against synced POs and receipts | Gemini PDF extraction → deterministic match engine (28 unit tests) |
-| 5. First bill | You approve; the bill posts to the mock ERP; the timer stops | Supervised mode: nothing is written without approval |
+| 1. Hire | You name your new AP employee; the clock starts | Workspace per visitor; the name is stored and used everywhere |
+| 2. Access | It asks for read-only NetSuite access | Faithful mock of NetSuite's record API (`/api/erp/{record}`) |
+| 3. Three questions | It maps 19 of 22 fields itself and asks you about the 3 it can't be sure of, in its own words | Name + value-format + **referential** scoring; Gemini only for what rules can't verify; an LLM suggestion never auto-approves |
+| 4. Test sync | It runs the sync on its own: 76 of 78 in, 2 old bills set aside with reasons; undo any time | Mapping applied and required fields validated per record |
+| 5. It works | One invoice at a time, it narrates each check and highlights on the PDF where it read each value | Gemini PDF extraction → deterministic 3-way match (28 unit tests) |
+| 6. It brings you decisions | 16 matched bills in one batch; each exception as a card with citation, rule and a drafted vendor query | Supervised mode: nothing is written without approval |
+| 7. First bill | You approve; it posts the bill and the clock stops | Compensating reversal for every action; append-only audit trail |
+
+**The 2-minute demo:** hire and name it (10s) → grant access and answer its 3 questions (25s) → watch it read and stop on the ₹1,060 vs ₹1,000 overbilling, PDF highlighted (40s) → hold with its drafted query, approve a bill, clock stops (25s) → audit trail and metric (20s).
 
 **Seeded exceptions**, each caught with a cited reason (document, field, value, rule):
 

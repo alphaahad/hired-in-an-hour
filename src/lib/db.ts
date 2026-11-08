@@ -16,6 +16,7 @@ create table if not exists workspaces (
   is_internal boolean not null default false,
   connection jsonb
 );
+alter table workspaces add column if not exists employee_name text;
 create table if not exists mappings (
   workspace_id text not null,
   source_key text not null,

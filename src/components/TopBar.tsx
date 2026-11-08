@@ -6,8 +6,8 @@ import { RotateCcw } from "lucide-react";
 import { MockBadge, cx, api } from "./ui";
 
 const NAV = [
-  { href: "/setup/connect", match: "/setup", label: "Setup" },
-  { href: "/employee", match: "/employee", label: "AP employee" },
+  { href: "/desk", match: "/desk", label: "Desk" },
+  { href: "/employee", match: "/employee", label: "Invoices" },
   { href: "/audit", match: "/audit", label: "Audit trail" },
   { href: "/metrics", match: "/metrics", label: "Metrics" },
 ];

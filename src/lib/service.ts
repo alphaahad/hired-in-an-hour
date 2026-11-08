@@ -3,18 +3,22 @@
 import "server-only";
 import { q, q1, json } from "./db";
 import { logAction, getAction, track, type Action } from "./audit";
-import { getWorkspace, setConnection, type Workspace } from "./workspace";
+import { getWorkspace, setConnection, setEmployeeName, type Workspace } from "./workspace";
 import { incomingInvoices, itemReceipts, purchaseOrders, vendorBills, vendors } from "@/data/seed";
 import { proposeMappings, sourceFields, targets, targetByKey, IGNORE, type RecordType } from "./mapping";
 import { extractInvoice, suggestMapping, type LlmSource } from "./llm";
 import { threeWayMatch, type MatchContext } from "./match";
 import type { Extraction, ItemReceipt, MatchResult, PurchaseOrder, Vendor, VendorBill } from "./types";
 import { inr } from "./format";
+import { draftVendorQuery } from "./narrate";
+import { listActions } from "./audit";
 
 // ============ setup ============
 
-export async function startSetup() {
+/** Hiring the employee starts the clock. The name is optional here so older callers keep working. */
+export async function startSetup(name?: string | null) {
   const w = await getWorkspace();
+  if (name) await setEmployeeName(w.id, name);
   if (!w.setup_started_at) await q("update workspaces set setup_started_at = now() where id = $1", [w.id]);
   await track(w.id, "setup_started");
   return getWorkspace();
@@ -309,13 +313,16 @@ export async function decideInvoice(ws: string, invoiceId: string, decision: Dec
     return { ok: true as const, billId, firstEmployee: first };
   }
   const status = decision === "hold" ? "on_hold" : "rejected";
+  const w = await q1<{ employee_name: string | null }>("select employee_name from workspaces where id = $1", [ws]);
+  const vendorName = vendors.find((v) => v.id === m.vendorId)?.companyName ?? ex.vendor_name;
+  const draft = decision === "hold" ? draftVendorQuery(w?.employee_name ?? "Your AP employee", vendorName, ex, m) : null;
   await q("update invoice_results set status = $3, updated_at = now() where workspace_id = $1 and invoice_id = $2", [ws, invoiceId, status]);
   await logAction({
     ws, actor: "human", type: decision === "hold" ? "invoice_held" : "invoice_rejected", target: `invoice:${invoiceId}`, reversible: true,
     summary: decision === "hold"
       ? `Put ${ex.invoice_number} on hold${note ? `: "${note}"` : ""}. Vendor query drafted (not sent: email is out of scope)`
       : `Rejected ${ex.invoice_number}${note ? `: "${note}"` : ""}. No bill created`,
-    evidence: { note: note || null, exceptions: m.exceptions.map((e) => e.detail) },
+    evidence: { note: note || null, exceptions: m.exceptions.map((e) => e.detail), draft },
     before, after: { status },
   });
   return { ok: true as const };
@@ -376,6 +383,7 @@ export async function checklist(w?: Workspace) {
   const syncOk = !!sync && sync.status !== "undone" && sync.status !== "running";
   return {
     workspace: { id: w.id, internal: w.is_internal, setupStartedAt: w.setup_started_at, firstEmployeeAt: w.first_employee_at, now: new Date().toISOString() },
+    employee: { name: w.employee_name },
     steps: [
       { key: "connect", label: "Connect NetSuite", href: "/setup/connect", done: !!w.connection, detail: w.connection ? `Sandbox ${w.connection.accountId}` : "Read-only sandbox access" },
       { key: "mapping", label: "Review field mappings", href: "/setup/mapping", done: m.length > 0 && m.every((x) => x.status !== "needs_review"), detail: m.length ? `${m.filter((x) => x.status === "needs_review").length} need you` : "Auto-mapped with confidence" },
@@ -383,5 +391,36 @@ export async function checklist(w?: Workspace) {
       { key: "agent", label: "Let the AP employee work", href: "/employee", done: inv.length > 0, detail: inv.length ? `${inv.length}/20 invoices processed` : "20 invoices in the inbox" },
       { key: "first", label: "Approve its first bill", href: "/employee", done: has("first_bill_posted"), detail: has("first_bill_posted") ? "Working employee" : "Supervised mode" },
     ],
+  };
+}
+
+// ============ the desk: everything the coworker view needs, in one read ============
+
+export async function deskState() {
+  const w = await getWorkspace();
+  const ws = w.id;
+  const [mappings, sync, invoices, actions, rows] = await Promise.all([
+    w.connection ? getMappings(ws) : Promise.resolve([]),
+    latestSync(ws),
+    listInvoices(ws),
+    listActions(ws),
+    q<InvoiceRow>("select invoice_id, extraction from invoice_results where workspace_id = $1", [ws]),
+  ]);
+  const ex = new Map(rows.map((r) => [r.invoice_id, r.extraction]));
+  return {
+    employee: { name: w.employee_name },
+    workspace: { internal: w.is_internal, setupStartedAt: w.setup_started_at, firstEmployeeAt: w.first_employee_at, now: new Date().toISOString() },
+    connection: w.connection,
+    mapping: {
+      total: mappings.length,
+      auto: mappings.filter((m) => m.status === "auto").length,
+      review: mappings.filter((m) => m.method === "llm" || m.method === "human" || m.status === "needs_review").length,
+      pending: mappings.filter((m) => m.status === "needs_review"),
+      targets: targets.map(({ key, label, record }) => ({ key, label, record })),
+      ignore: IGNORE,
+    },
+    sync: sync ?? null,
+    invoices: invoices.map((i) => ({ ...i, extraction: ex.get(i.id) ?? null, vendorId: i.match?.vendorId ?? null })),
+    actions,
   };
 }

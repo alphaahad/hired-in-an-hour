@@ -10,7 +10,8 @@
     "pdfs": "tsx scripts/generate-pdfs.ts",
     "cache:export": "tsx --env-file-if-exists=.env.local scripts/export-llm-cache.mts",
     "test": "vitest run",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "postinstall": "node scripts/copy-pdf-worker.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.15",
@@ -19,6 +20,7 @@
     "lucide-react": "^1.70.0",
     "next": "16.4.5",
     "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.10.38",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "server-only": "^0.0.1",

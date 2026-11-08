@@ -9,8 +9,8 @@ Items marked **GUESS** are assumptions about Zamp's product or customers that I 
 
 **Decision:** Own one number: **time to first working digital employee**. The target is under 60 minutes.
 
-**Definition (precise, because metrics drift):** wall-clock time from the moment a workspace clicks **Start setup** to the moment the AP employee **posts its first vendor bill to the ERP after a passed 3-way match and a human approval**.
-- It starts at "Start setup", not at contract signature. In production I'd add a second clock, signature → first login, because that's where procurement and IT time hides.
+**Definition (precise, because metrics drift):** wall-clock time from the moment a workspace **hires (names) its employee** to the moment the AP employee **posts its first vendor bill to the ERP after a passed 3-way match and a human approval**.
+- It starts at hire, not at contract signature. In production I'd add a second clock, signature → first login, because that's where procurement and IT time hides.
 - An *overridden* exception also stops the clock, since a human accepted the outcome. I record `decision` on the event so I can split the two later.
 - If the bill is later reversed, the timestamp stands. Reversals are tracked separately as a trust signal (see 14).
 - **I'd manage to p90, not median.** The median flatters you; the slow customers are the ones who churn before value.
@@ -114,11 +114,11 @@ A seeded +1.2% invoice demonstrates the warning-but-pass path.
 **Why:** the demo must work flawlessly on a screen recording and when a reviewer opens it cold, but I won't pass off a precomputed answer as AI. Rate limits: 80 calls per workspace per hour, 3,000 per day globally.
 
 **Free tier, on purpose.** The demo key is on Gemini's free API tier: **20 requests per day per model** plus a per-minute cap. Rather than pay for a demo, I:
-- **Snapshot real answers.** `npm run cache:export` writes the model's actual outputs (synthetic invoices only, no keys) to `src/data/gemini-cache.json`, and every fresh database, including production, loads them as *cached*. Reviewers see genuine Gemini reads without spending quota. Today, 17 of 20 invoices were read live; the other 3 and the 3 mapping suggestions are still on precomputed fallback until the next day's quota.
+- **Snapshot real answers.** `npm run cache:export` writes the model's actual outputs (synthetic invoices only, no keys) to `src/data/gemini-cache.json`, and every fresh database, including production, loads them as *cached*. Reviewers see genuine Gemini reads without spending quota. The snapshot now holds real Gemini reads of all 20 invoices and all 3 mapping suggestions (captured over two days of free-tier quota).
 - **Retry once, then fall back honestly.** A per-minute 429 or a Google-side 503 waits briefly and retries once; a daily-quota 429 falls straight back, with the reason shown ("Gemini is rate-limiting this demo's key right now").
 - **Pinned model** (`gemini-3.5-flash`, not `-latest`), so the cache keys and the behaviour don't shift under the recording.
 
-**Live accuracy on the 17 PDFs read:** every total, tax amount, line quantity, unit price, PO number and GSTIN was exact, and all 20 match outcomes were correct. The only differences were vendor-name formatting (all caps, or a city appended), which is why vendor identity is checked on GSTIN first.
+**Live accuracy:** on the 17 PDFs compared field by field, every total, tax amount, line quantity, unit price, PO number and GSTIN was exact; the other 3 (read live a day later) produced the correct match outcome, including the re-keyed duplicate. The only differences were vendor-name formatting (all caps, or a city appended), which is why vendor identity is checked on GSTIN first.
 
 **Production note:** with billing on, the snapshot becomes a warm cache rather than a workaround.
 
@@ -160,3 +160,19 @@ A seeded +1.2% invoice demonstrates the warning-but-pass path.
 5. Default tolerances: 2% price, 0 over-receipt.
 6. There isn't already a self-serve setup flow. If there is, this becomes "here's how I'd measure and shorten it".
 7. India GST invoices are relevant (I used Indian vendors; Zamp's customers are largely global).
+
+## 20. The employee is the main character
+
+**Problem (found by using it):** the first version worked but didn't land. The "employee" was a status column; its best work (reading a PDF, checking the PO and receipt, deciding to stop) happened in milliseconds off-screen; three of five steps were an admin wizard. It read as software, not a colleague.
+
+**Decision:** the same engine, presented as a coworker you hire and supervise.
+- **You hire it and name it.** The name is yours to choose (stored on the workspace; plain text, 1–24 characters). The clock starts at hire.
+- **It onboards itself.** It asks for read-only access, maps 19 of 22 fields on its own, asks you only about the 3 it can't be sure of (in its own words, with its reasoning one click away), runs the test sync without being told, and explains what it set aside. Setup stops being a wizard and becomes three questions.
+- **You watch it work.** One invoice at a time, it narrates each check and highlights on the actual PDF where it read each value (from the extraction's own evidence quotes and the cited values of failed checks).
+- **It brings you decisions.** Matched bills arrive as one batch; each exception arrives as its own card with the citation, the rule, and a drafted vendor query. You can act while it keeps working. Pause and skip-ahead are always available.
+
+**Honesty about pacing:** the narration paces the *display* of real results so a person can follow them (about 0.3s per check). It never fakes work: each invoice shows its real source (live, cached or fallback) and real read time, and a live Gemini read shows as "Reading…" for as long as it actually takes. Skip-ahead still does every check; it only stops narrating them.
+
+**What stayed the same:** the match engine, mapping scorer, LLM layer, sync, reversal and metric are untouched. The old screens remain as records (Invoices, invoice detail, Audit trail, Metrics, and the setup pages behind "Review all" and "Log").
+
+**Persona guardrails:** fictional and user-named; nothing is styled as Zamp's own product; the vendor query is drafted, never sent (email is out of scope), and says so.

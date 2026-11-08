@@ -8,6 +8,7 @@ export type Workspace = {
   setup_started_at: string | null;
   first_employee_at: string | null;
   is_internal: boolean;
+  employee_name: string | null;
   connection: { accountId: string; connectedAt: string; counts: Record<string, number> } | null;
 };
 
@@ -30,6 +31,18 @@ export async function rotateWorkspace() {
   const id = "ws_" + crypto.randomUUID().replace(/-/g, "").slice(0, 16);
   c.set("zws", id, { httpOnly: true, sameSite: "lax", maxAge: 60 * 60 * 24 * 30, path: "/" });
   return id;
+}
+
+/** The name the user gave their AP employee. Plain text, 1–24 characters. */
+export function cleanEmployeeName(raw: unknown): string | null {
+  const name = String(raw ?? "").replace(/\s+/g, " ").trim();
+  if (name.length < 1 || name.length > 24) return null;
+  if (!/^[\p{L}\p{N} .'-]+$/u.test(name)) return null;
+  return name;
+}
+
+export async function setEmployeeName(id: string, name: string) {
+  await q("update workspaces set employee_name = $2 where id = $1", [id, name]);
 }
 
 export async function setConnection(id: string, conn: Workspace["connection"]) {

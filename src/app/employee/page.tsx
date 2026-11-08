@@ -54,7 +54,7 @@ export default function Inbox() {
     setApproving(false);
   }
 
-  if (!rows) return <PageHeader eyebrow="Step 4 of 5" title="AP employee" />;
+  if (!rows) return <PageHeader eyebrow="Records" title="Invoices" />;
   const by = (s: string) => rows.filter((r) => r.status === s).length;
   const queued = by("queued");
   const exceptionTypes = rows.flatMap((r) => r.match?.exceptions.map((e) => e.exceptionType!) ?? []);
@@ -62,8 +62,8 @@ export default function Inbox() {
   return (
     <div>
       <PageHeader
-        eyebrow={by("posted") ? "Step 5 of 5" : "Step 4 of 5"}
-        title="AP employee · invoice inbox"
+        eyebrow="Records"
+        title="Invoices"
         actions={
           <>
             {by("matched") > 0 && <Button loading={approving} onClick={approveAllMatched}><CheckCheck className="size-4" /> Approve all matched ({by("matched")})</Button>}
